@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "python-template"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8.0,<3.9"
+numpy = "^1.22.2"
+Flask = "^2.0.3"
+yfinance = "^0.1.70"
+Flask-SQLAlchemy = "^2.5.1"
+cockroachdb = "^0.3.5"
+sqlalchemy-cockroachdb = "^1.4.3"
+psycopg2-binary = "^2.9.3"
+requests = "^2.27.1"
+Google-Images-Search = "^1.4.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

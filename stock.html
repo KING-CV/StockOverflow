@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block main %}
+<style>
+    div.container {
+        display: table;
+        overflow: hidden;
+    }
+
+    div.middle, div.right {
+        float: left;
+        width: 50vw;
+        padding: 7px;
+        background-color: #006747;
+        margin: 5px;
+    }
+
+    #news {
+      padding-left: 10px;
+    }
+  
+</style>
+
+<h1><img class='logo' src='/static/logo.png'></img>StockOverflow - <span class='txt-green'>Stocks + Crypto</span></h1>
+
+<!--
+        name: str,
+        circulatingSupply: int,
+        currentPrice: float,
+        debtToEquity: float,
+        ebitda: int,
+        forwardEps: float,
+        forwardPE: float,
+        grossMargins: float,
+        grossProfits: int,
+        industry: str,
+        longName: str,
+        marketCap: int,
+        recommendationKey: str,
+        sector: str,
+        symbol: str,
+        totalRevenue: int,
+        volume: int,
+        website: str,
+        ts: float
+-->
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+          <h2>Description</h2>
+            <span class='txt-green'>{{ info.longname }}</span> ({{ info.symbol }}), is a {{ info.industry }} in the {{ info.sector }} sector. Current recommendation: <span style='color: {{ "green" if info.recommendationkey == "buy" else "red" }}'>{{ info.recommendationkey }}</span>
+        </div>
+        <div class="col" id="news">
+          <h2>News Bulletin</h2>
+            {% for article in news %}    
+            <div class='article'>
+                <a href='{{ article["link"] }}'><span class='txt-green'>{{ article['title'] }}</span> - {{ article['publisher'] }}</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class='container'>
+    <div class='middle'>
+      <table>
+          <tr>
+              <th>Circulating Supply</th>
+              <td>{{ info.circulatingsupply or 19000000 }}</td>
+              <td>"The total supply of an asset that are actively available for trade and are being used in the market and in general public."</td>
+          </tr>
+          <tr>
+              <th>Current Price</th>
+              <td>${{ info.currentprice or 4400.21 }}</td>
+              <td>"The most recent price at which a security was sold on an exchange."</td>
+          </tr>
+          <tr>
+              <th>Debt-To-Equity</th>
+              <td>{{ info.debttoequity }}</td>
+              <td>"Compares a company's total liabilities to its shareholder equity and can be used to evaluate how much leverage a company is using."</td>
+          </tr>
+          <tr>
+              <th>EBITDA</th>
+              <td>{{ info.ebitda }}</td>
+              <td>"A measure of a company's overall financial performance and is used as an alternative to net income in some circumstances."</td>
+          </tr>
+          <tr>
+              <th>Forward EPS</th>
+              <td>{{ info.forwardeps }}</td>
+              <td>"Forward EPS involves making an estimation of a company's upcoming earnings"</td>
+          </tr>
+          <tr>
+              <th>Forward PE</th>
+              <td>{{ info.forwardpe }}</td>
+              <td>"Forward P/E uses projected future earnings to calculate the price-to-earnings ratio"</td>
+          </tr>
+          <tr>
+              <th>Gross Margins</th>
+              <td>{{ info.grossmargins }}</td>
+              <td>"The amount of money a company retains after incurring the direct costs associated with producing the goods it sells and the services it provides"</td>
+          </tr>
+          <tr>
+              <th>Gross Profits</th>
+              <td>{{ info.grossprofits }}</td>
+              <td>"The profit a business makes after subtracting all the costs that are related to manufacturing and selling its products or services."</td>
+          </tr>
+          <tr>
+              <th>Market Cap</th>
+              <td>{{ info.marketcap }}</td>
+              <td>"The value of a company that is traded on the stock market, calculated by multiplying the total number of shares by the present share price"</td>
+          </tr>
+          <tr>
+              <th>Total Revenue</th>
+              <td>{{ info.totalrevenue }}</td>
+              <td>"The full amount of total sales of goods and services. It is calculated by multiplying the total amount of goods and services sold by the price of the goods and services."</td>
+          </tr>
+          <tr>
+              <th>Volume</th>
+              <td>{{ info.volume }}</td>
+              <td>"The total amount of a security that changes hands over a given period of time. This can refer to shares of an individual stock, the number of options contracts traded, or the total number of shares exchanged within an index or an entire stock market."</td>
+          </tr>
+      </table>
+    </div>
+</div>
+
+<div class='container'>
+    <div class='middle'>
+      <p>{{ aa }}</p>
+    </div>
+</div>
+    
+{% endblock %}
